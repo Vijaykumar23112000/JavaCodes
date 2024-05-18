@@ -1,8 +1,5 @@
 package Leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /*
         Example 1:
         Input: s = "III"
@@ -22,25 +19,25 @@ import java.util.Map;
 
 public class RomanToNumber {
 
-    private static Map<Character, Integer> getMap() {
-        Map<Character, Integer> mp = new HashMap<>();
-        mp.put('I', 1);
-        mp.put('V', 5);
-        mp.put('X', 10);
-        mp.put('L', 50);
-        mp.put('C', 100);
-        mp.put('D', 500);
-        mp.put('M', 1000);
-        return mp;
+    public static int getValue(char ch){   
+        switch(ch){
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default : return 0;
+        }
     }
 
     public static int romanToNumber(String s) {
         int total = 0;
         int prevValue = 0;
-        Map<Character , Integer> mp = getMap();
         for (int i = s.length() - 1; i >= 0; i--) {
             char c = s.charAt(i);
-            int value = mp.get(c);
+            int value = getValue(c);
             total = value < prevValue ? total -value : total + value;
             prevValue = value;
         }
